@@ -1,16 +1,7 @@
-# mob_app_dev
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## To run a Flutter app from a GitHub repo
+  
+  1. Clone the repository using `git clone <repository URL> ` command.
+  2. Download and install Flutter SDK (https://flutter.dev/docs/get-started/install).
+  3. Open the project in editor like Visual Studio Code or Android Studio.
+  4. Install the dependencies using `flutter pub get` command.
+  5. To run the project on emulator, device or in browser use `flutter run` command.
