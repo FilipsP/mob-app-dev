@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -48,10 +50,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Color> _squares = List.generate(10, (index) =>  Colors.redAccent);
   int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
+      if (_counter > 9) {
+        _counter = 0;
+        for (int i = 0; i < 10; i++) {
+          _squares[i] = Colors.redAccent;
+        }
+      }
+      _squares[_counter] = Colors.green;
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -97,11 +107,39 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Text(
               'You have pushed the button this many times:',
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    color: Colors.black54,
+                    blurRadius: 5,
+                    offset: Offset(1.3, 2),
+                  ),
+                ],
+              )
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+              textScaleFactor: _counter.toDouble(),
             ),
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 10,
+              children: List.generate(
+                10,
+                    (index) => GestureDetector(
+                  onTap: () => setState(() {
+
+                  }),
+                  child: Container(
+                    color: _squares[index],
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
