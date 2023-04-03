@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mob_app_dev/camera_home.dart';
 import 'package:mob_app_dev/counter.dart';
+import 'package:mob_app_dev/microphone_home.dart';
+import 'item.dart';
+import 'package:icon_forest/amazingneoicons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,22 +11,12 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
+        fontFamily: 'SourceSansPro',
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -32,16 +26,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -57,7 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
       // set the background image of the circle
     ),
     const Counter(title: 'Counter'),
-    const Text('Index 2: Template'),
+    const Text(
+      'Index 2: Business',
+      style: TextStyle(
+        fontSize: 24,
+        color: Colors.black,
+      ),
+    ),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -67,16 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         centerTitle: true,
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
@@ -93,6 +75,67 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
+        ),
+      ),
+      //dropdown menu
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.black12,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text('Camera test'),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const CameraHome(),
+                ),
+              ),
+            ),
+            ListTile(
+                leading: const Icon(Icons.mic),
+                title: const Text('Microphone Test'),
+                onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const MicrophoneHome(),
+                      ),
+                    )),
+            ListTile(
+              leading: const Icon(AmazingNeoIcons.angle_double_down),
+              title: const Text('Discount'),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const Item(
+                    shop: 'Sugar House',
+                    title: 'Cake "Amore"',
+                    image: 'assets/images/cake.jpg',
+                    description:
+                        'Life should be sweet without too much effort. '
+                        'Choose from Master Quality products that your soul desires and celebrate every day. '
+                        'A rich selection satisfies the needs of even the most demanding food connoisseur.',
+                    price: 12.99,
+                    pricePerKg: 12.99,
+                    discount: 50,
+                  ),
+                ),
+              ),
+            ),
+            const ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+            ),
+          ],
         ),
       ),
       body: Center(
