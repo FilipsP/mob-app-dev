@@ -5,3 +5,5 @@
   3. Open the project in editor like Visual Studio Code or Android Studio.
   4. Install the dependencies using `flutter pub get` command.
   5. To run the project on emulator, device or in browser use `flutter run` command.
+  
+  Kodutööde kirjeldus on repositooriumi [Wikis](../../wiki)
